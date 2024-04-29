@@ -1,6 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
-
-import { SplashScreen } from './src/screens/SplashScreen';
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
+import { Routes } from './src/routes';
 
 import { useFonts, 
          SourceSansPro_400Regular,
@@ -8,6 +8,8 @@ import { useFonts,
          SourceSansPro_700Bold, 
          SourceSansPro_900Black 
         } from '@expo-google-fonts/source-sans-pro';
+        
+import { theme } from "./src/styles"
 
 export default function App() {
   let [fontsLoaded, fontError] = useFonts({
@@ -21,9 +23,10 @@ export default function App() {
     return null;
   }
 
-
   return (
-    <SplashScreen /> 
+    <ThemeProvider theme={theme}>
+      <Routes />
+    </ThemeProvider>
   );
-}
+} 
 
