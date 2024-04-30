@@ -2,25 +2,28 @@ import React from "react";
 import { FlatList } from "react-native";
 import { Card } from "../../molecules"
 import { Text } from "../../atoms"
+import { ListContainer } from "./styles"
+import { theme } from "~/styles";
 
-const FAKE_DATA = [
-    {
-        id: 0,
-        image_url: "https://6vezes7.com.br/wp-content/uploads/2023/06/Captura-de-tela-2023-06-23-143036.jpg",
-    },
-    {
-        id: 1,
-        image_url: "https://guiadoestudante.abril.com.br/wp-content/uploads/sites/4/2020/02/desafio-jedi-de-mestre-yoda-consertar-as-frases-consegue-vocecc82.jpg?quality=100&strip=info&w=1024",
-    }
-]
 
-export const HomeList = () => {
+export const HomeList = ({ data, title }) => {
     return (
+     <ListContainer>
+        <Text ml={24} fontFamily="black" size={18}>
+          {title}
+        </Text>
         <FlatList 
-        horizontal
-          data={FAKE_DATA}
+          horizontal
+          data={data}
           renderItem={({ item }) => <Card item={item} />}
           keyExtractor={(item) => String(item.id)}
+          contentContainerStyle={{
+            paddingTop: theme.metrics.px(12),
+            paddingLeft: theme.metrics.px(24),
+            paddingBottom: theme.metrics.px(24),
+          }}
         />
+     </ListContainer>
+       
     )
 }
